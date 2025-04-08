@@ -104,10 +104,35 @@ a.secondary {
 .footer img {
   flex-shrink: 0;
 }
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 5px;
+}
+
 .box {
-  border: black 1px;
-  width: 30px;
-  height: 30px;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #d3d6da;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
 /* Enable hover only on non-touch devices */

@@ -6,7 +6,7 @@ import { words } from "./utils/words";
 
 export default function Home() {
   const [currentWord, setCurrentWord] = useState<string>("");
-  const [guess, setGuess] = useState<number>(5);
+  const [guesses, setGuesses] = useState<string[]>(Array(6).fill(""));
 
   useEffect(() => {
     const getRandomWord = () => {
@@ -16,20 +16,30 @@ export default function Home() {
     getRandomWord();
   }, []);
 
-  for (let i = 1; i < currentWord.length; i++) {
-    let newName = currentWord;
-    words.push(newName);
-    return <div className={styles.box}></div>;
-  }
+  const boxes = () => {
+    return (
+      <div className={styles.grid}>
+        {guesses.map((guess, i) => (
+          <div key={i} className={styles.row}>
+            {Array(5)
+              .fill(0)
+              .map((_, j) => (
+                <div key={`${i}-${j}`} className={styles.box}>
+                  {guess[j] || ""}
+                </div>
+              ))}
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   console.log(currentWord);
 
   return (
     <div className={styles.page}>
       <h1>Wordle</h1>
-      <div>
-        <p>{currentWord}</p>
-      </div>
+      {boxes()}
     </div>
   );
 }
